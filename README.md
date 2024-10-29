@@ -14,7 +14,10 @@ Dalam final project ini, kelompok kami ingin membuat machine learning yang bertu
 
 
 ## Prerequisites
-Download data [here](https://drive.google.com/drive/folders/1q0uoNhUzHYL3TmhfwtFL-Xnb26rwOzRF?usp=sharing)
+1. Download data [here](https://drive.google.com/drive/folders/1q0uoNhUzHYL3TmhfwtFL-Xnb26rwOzRF?usp=sharing)
+2. Clone repositori ini:
+   ```bash
+   git clone https://github.com/Podjan/ResNet.git
 
 ## Penjelasan Sebelum EDA
 ### Dataset
