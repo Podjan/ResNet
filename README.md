@@ -40,7 +40,7 @@ Goals yang ingin dicapai dalam studi case ini adalah meningkatkan jumlah custome
 3. Memprediksi harga hotel di tahun depan untuk memberikan rekomendasi harga yang tepat di setiap hotel.
 
 ### Keputusan
-1. Hanya melakukan merge dataset calendar dan listings. Reviews tidak diikutsertakan karena dataset calendar tidak mempunyai id. Selain itu dataset listings juga punya kolom rating sehingga untuk kepuasan dari listing sudah terwakilkan.
+1. Hanya melakukan merge dataset calendar dan listings. Reviews tidak diikutsertakan karena dataset tidak mempunyai id. Selain itu dataset listings juga punya kolom rating sehingga untuk kepuasan dari listing sudah terwakilkan.
 2. Membuat kolom day_price_status, weekly_price_status, dan monthly_price_status. Hal ini untuk melihat apakah orang yang menyewa listing tersebut membayar dengan harga per hari, per minggu, atau per bulan. Hal ini juga memudahkan untuk melakukan group terhadap harga dari setiap listing dan juga menentukan alasan dari adanya outlier.
 3. Kolom yang berhubungan dengan harga seperti security_deposit, cleaning_fee, extra_people di dataset listing dibuang karena dari dataset calendar tidak menampilkan rinciannya seperti berapa tambahan orang yang menginap. Kalaupun dibuat rumus untuk menebak kira-kira pakai harga dasar yang mana (harga dasar disini yaitu price, weekly_price, atau monthly_price) maka kecenderungannya bisa salah karena tidak ada detail rincian dari orang yang menginap di tanggal masing-masing. Dataset calendar hanya menampilkan harga dan harga dasar tersebut berdasarkan price, weekly_price, dan monthly_price di dataset listing.
 
@@ -100,6 +100,28 @@ Fungsi diatas adalah fungsi untuk membuat tiga kolom status. **update_status** d
     
 ## EDA
 ### Descriptive Statistic
+Pada proses descriptive static ini, langkah pertama yang dilakukan adalah mengubah tipe data yang kurang sesuai agar tidak salah dalam melakukan pengolahan data. Beberapa data yang perlu disesuikan tipe datanya adalah payment, price, weekly_price, dan monthly_price diubah ke dalam tipe data float, latitude dan longitude diubah dalam bentuk string. Latitude dan logitude diubah dalam bentuk string sebab dalam proses descriptive statistic data tersebut kurang tepat jika diolah karena merepresentasikan letak sebuah penginapan. 
+
+
+Berikut ini adalah statistik deskriptif dari dataset yang digunakan:
+
+| Feature               | Count      | Mean      | Std Dev   | Min      | 25%      | 50%      | 75%      | Max      |
+|-----------------------|------------|-----------|-----------|----------|----------|----------|----------|----------|
+| listing_id            | 1,393,570  | 5,550,111 | 2,962,274 | 3,335    | 3,258,213| 6,118,244| 8,035,212| 10,340,167|
+| payment               | 934,542    | 137.94    | 105.06    | 10       | 75       | 109      | 160      | 1,650     |
+| host_id               | 1,393,570  | 15,785,566| 14,581,910| 4,193    | 3,271,389| 1,055,814| 2,590,413| 5,320,861 |
+| accommodates          | 1,393,570  | 3.34      | 1.97      | 1        | 2        | 3        | 4        | 16        |
+| bathrooms             | 1,387,730  | 1.25      | 0.59      | 0        | 1        | 1        | 2        | 8         |
+| bedrooms              | 1,391,380  | 1.30      | 0.88      | 0        | 1        | 1        | 2        | 7         |
+| beds                  | 1,393,205  | 1.75      | 1.19      | 1        | 1        | 1        | 2        | 15        |
+| price                 | 1,393,570  | 127.97    | 90.28     | 20       | 75       | 100      | 150      | 1,000     |
+| weekly_price          | 733,285    | 788.48    | 532.22    | 100      | 455      | 650      | 950      | 6,300     |
+| monthly_price         | 553,705    | 2,613.34  | 1,721.70  | 500      | 1,512    | 2,200    | 3,150    | 19,500    |
+| guests_included       | 1,393,570  | 1.67      | 1.31      | 1        | 1        | 1        | 2        | 15        |
+| minimum_nights        | 1,393,570  | 2.36      | 16.30     | 1        | 1        | 1        | 1        | 1,000     |
+| maximum_nights        | 1,393,570  | 78.04     | 168.34    | 1        | 6        | 30       | 112      | 100,000   |
+| review_scores_rating  | 1,157,415  | 94.54     | 6.60      | 2        | 93       | 96       | 99       | 100       |
+
 
 ### Univariate Analysis
 
