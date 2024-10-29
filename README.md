@@ -44,6 +44,49 @@ Goals yang ingin dicapai dalam studi case ini adalah meningkatkan jumlah custome
 2. Membuat kolom day_price_status, weekly_price_status, dan monthly_price_status. Hal ini untuk melihat apakah orang yang menyewa listing tersebut membayar dengan harga per hari, per minggu, atau per bulan. Hal ini juga memudahkan untuk melakukan group terhadap harga dari setiap listing dan juga menentukan alasan dari adanya outlier.
 3. Kolom yang berhubungan dengan harga seperti security_deposit, cleaning_fee, extra_people di dataset listing dibuang karena dari dataset calendar tidak menampilkan rinciannya seperti berapa tambahan orang yang menginap. Kalaupun dibuat rumus untuk menebak kira-kira pakai harga dasar yang mana (harga dasar disini yaitu price, weekly_price, atau monthly_price) maka kecenderungannya bisa salah karena tidak ada detail rincian dari orang yang menginap di tanggal masing-masing. Dataset calendar hanya menampilkan harga dan harga dasar tersebut berdasarkan price, weekly_price, dan monthly_price di dataset listing.
 
+### Kolom yang diambil
+#### calendar
+- listing_id
+- date
+- available
+- price (di rename jadi payment)
+#### listings
+- listing_id
+- name
+- host_id
+- host_response_time
+- host_response_rate
+- host_acceptance_rate
+- host_is_superhost
+- host_identity_verified
+- city
+- state
+- zipcode
+- market
+- smart_location
+- country_code
+- latitude
+- longitude
+- is_location_exact
+- property_type
+- room_type
+- accommodates
+- bathrooms
+- bedrooms
+- beds
+- bed_type
+- price
+- weekly_price
+- monthly_price
+- guests_included
+- minimum_nights
+- maximum_nights
+- review_scores_rating
+- instant_bookable
+- cancellation_policy
+- require_guest_profile_picture
+- require_guest_phone_verification
+
 ### Fungsi untuk membuat day_price_status, weekly_price_status, dan monthly_price_status
 ```python
 def update_status(df):
