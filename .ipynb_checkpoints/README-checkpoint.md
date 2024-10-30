@@ -59,12 +59,7 @@ Goals yang ingin dicapai dalam studi case ini adalah meningkatkan jumlah custome
 - host_acceptance_rate
 - host_is_superhost
 - host_identity_verified
-- city
-- state
 - zipcode
-- market
-- smart_location
-- country_code
 - latitude
 - longitude
 - is_location_exact
@@ -100,27 +95,73 @@ Fungsi diatas adalah fungsi untuk membuat tiga kolom status. **update_status** d
     
 ## EDA
 ### Descriptive Statistic
-Pada proses descriptive static ini, langkah pertama yang dilakukan adalah mengubah tipe data yang kurang sesuai agar tidak salah dalam melakukan pengolahan data. Beberapa data yang perlu disesuikan tipe datanya adalah payment, price, weekly_price, dan monthly_price diubah ke dalam tipe data float, latitude dan longitude diubah dalam bentuk string. Latitude dan logitude diubah dalam bentuk string sebab dalam proses descriptive statistic data tersebut kurang tepat jika diolah karena merepresentasikan letak sebuah penginapan. 
+Pada proses descriptive static ini, langkah pertama yang dilakukan adalah mengubah tipe data yang kurang sesuai adapun features atau kolom-kolom yang diubah datanya pada proses ini adalah :
+
+1. Mengubah data yang bertipe string ke float
+   Kolom-kolom yang bertipe string diubah ke float sebab kolom-kolom tersebut sangat berpengaruh saat proses descriptive statistic. Berikut adalah kolom-kolomnya :
+   
+   | Features             | dataset    |
+   |----------------------|------------|
+   | payment              | calendar   |
+   | price                | listing_id |
+   | weekly_price         | listing_id |
+   | monthly_price        | listing_id |
+   | host_response_rate   | listing_id |
+   | host_acceptance_rate | listing_id |
+   
+2. Mengubah data yang bertipe integer ke string
+   Kolom-kolom yang bertipe integer diubah ke string sebab kolom-kolom tersebut sangat berpengaruh saat proses univariate ataupun multivariate. Berikut adalah kolom-kolomnya:
+   
+   | Features             | dataset    |
+   |----------------------|------------|
+   | host_id              | listing_id |
+   | price                | listing_id |
+   | weekly_price         | listing_id |
+
+
+Selain mengubah tipe data, hal yang peling penting dalam pengolahan data adalah mengetahui nilai-nilai kosong sebagai bahan pertimbangan apakah data tersebut harus kita buang atau pertahankan. Adapun features yang memiliki data kosong / nan adalah sbb:
+
+   | Features                 | tot. data nan    |
+   |--------------------------|------------------|
+   | payment                  | 459028           |
+   | host_response_time       | 190895           |
+   | host_response_rate       | 190895           |
+   | host_acceptance_rate     | 282145           |
+   | host_is_superhost        | 730              |
+   | host_identity_verified   | 730              |
+   | zipcode                  | 2555             |
+   | property_type            | 363              |
+   | bathrooms                | 5840             |
+   | bedrooms                 | 2190             |
+   | beds                     | 365              |
+   | weekly_price             | 660285           |
+   | monthly_price            | 839865           |
+   | review_scores_rating     | 236155           |
+   
 
 
 Berikut ini adalah statistik deskriptif dari dataset yang digunakan:
 
-| Feature               | Count      | Mean      | Std Dev   | Min      | 25%      | 50%      | 75%      | Max      |
-|-----------------------|------------|-----------|-----------|----------|----------|----------|----------|----------|
-| listing_id            | 1,393,570  | 5,550,111 | 2,962,274 | 3,335    | 3,258,213| 6,118,244| 8,035,212| 10,340,167|
-| payment               | 934,542    | 137.94    | 105.06    | 10       | 75       | 109      | 160      | 1,650     |
-| host_id               | 1,393,570  | 15,785,566| 14,581,910| 4,193    | 3,271,389| 1,055,814| 2,590,413| 5,320,861 |
-| accommodates          | 1,393,570  | 3.34      | 1.97      | 1        | 2        | 3        | 4        | 16        |
-| bathrooms             | 1,387,730  | 1.25      | 0.59      | 0        | 1        | 1        | 2        | 8         |
-| bedrooms              | 1,391,380  | 1.30      | 0.88      | 0        | 1        | 1        | 2        | 7         |
-| beds                  | 1,393,205  | 1.75      | 1.19      | 1        | 1        | 1        | 2        | 15        |
-| price                 | 1,393,570  | 127.97    | 90.28     | 20       | 75       | 100      | 150      | 1,000     |
-| weekly_price          | 733,285    | 788.48    | 532.22    | 100      | 455      | 650      | 950      | 6,300     |
-| monthly_price         | 553,705    | 2,613.34  | 1,721.70  | 500      | 1,512    | 2,200    | 3,150    | 19,500    |
-| guests_included       | 1,393,570  | 1.67      | 1.31      | 1        | 1        | 1        | 2        | 15        |
-| minimum_nights        | 1,393,570  | 2.36      | 16.30     | 1        | 1        | 1        | 1        | 1,000     |
-| maximum_nights        | 1,393,570  | 78.04     | 168.34    | 1        | 6        | 30       | 112      | 100,000   |
-| review_scores_rating  | 1,157,415  | 94.54     | 6.60      | 2        | 93       | 96       | 99       | 100       |
+### Statistik Deskriptif Data Numerik
+
+| Column                | Count       | Mean           | Std            | Min   | 25%   | 50%   | 75%   | Max     |
+|-----------------------|-------------|----------------|----------------|-------|-------|-------|-------|---------|
+| payment               | 934542      | 137.94         | 105.06         | 10.0  | 75.0  | 109.0 | 160.0 | 1650.0  |
+| host_response_rate    | 1202675     | 9.85           | 11.86          | 1.0   | 7.0   | 10.0  | 10.0  | 100.0   |
+| host_acceptance_rate  | 1111425     | 9.99           | 18.11          | 1.0   | 7.0   | 10.0  | 10.0  | 100.0   |
+| accommodates          | 1393570     | 3.34           | 1.97           | 1.0   | 2.0   | 3.0   | 4.0   | 16.0    |
+| bathrooms             | 1387730     | 1.25           | 0.59           | 0.0   | 1.0   | 1.0   | 2.0   | 8.0     |
+| bedrooms              | 1391380     | 1.30           | 0.88           | 0.0   | 1.0   | 1.0   | 2.0   | 7.0     |
+| beds                  | 1393205     | 1.73           | 1.13           | 1.0   | 1.0   | 1.0   | 2.0   | 15.0    |
+| price                 | 1393570     | 127.97         | 90.28          | 22.0  | 100.0 | 150.0 | 75.0  | 6300.0  |
+| weekly_price          | 733285      | 788.48         | 532.22         | 100.0 | 455.0 | 650.0 | 950.0 | 6300.0  |
+| monthly_price         | 553705      | 2613.33        | 1721.70        | 500.0 | 1512.0| 2200.0| 3150.0| 19500.0 |
+| guests_included       | 1393570     | 1.67           | 1.31           | 1.0   | 1.0   | 1.0   | 2.0   | 15.0    |
+| minimum_nights        | 1393570     | 2.36           | 16.03          | 1.0   | 1.0   | 1.0   | 2.0   | 1000.0  |
+| maximum_nights        | 1393570     | 780.45         | 1683.36        | 1.0   | 6.0   | 90.0  | 1125.0| 100000.0|
+| review_scores_rating  | 1157415     | 94.53          | 6.60           | 2.0   | 93.0  | 96.0  | 99.0  | 100.0   |
+
+Dari hasil descriptive statistik terlihat tidak ada nilai summary yang aneh, semua data hasilnya normal, tidak ada nilai minus atau pun data-data yang bermasalah
 
 
 ### Univariate Analysis
